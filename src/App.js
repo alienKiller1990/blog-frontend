@@ -1,7 +1,8 @@
 
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { AddForm, HeaderBlock, PostItem } from "./components";
+import { AddForm, HeaderBlock, PostList } from "./components";
 
 function App() {
   return (
@@ -13,17 +14,39 @@ function App() {
       />
       <div className="container">
         <div className="content">
-          <button type="button" className="btn btn-primary">Add post</button>
+          {/* <button type="button" className="btn btn-primary">Add post</button> */}
 
           <div className="content">
-            {/* <div className="post-items">
-              <PostItem
-                title="Заголовок статьи"
-                createdAt={'' + new Date()}
-                _id="1"
-              />
-            </div> */}
-           <AddForm/>
+            <Router>
+              <div>
+                <Switch>
+                  <Route
+                    path="/"
+                    exact
+                    component={() => (
+                      <PostList posts={[
+                        {
+                          _id: '1',
+                          title: 'Первая статья',
+                          createdAt: '' + new Date()
+                        },
+                        {
+                          _id: '2',
+                          title: 'Вторая статья',
+                          createdAt: '' + new Date()
+                        },
+                        {
+                          _id: '3',
+                          title: 'Третья статья',
+                          createdAt: '' + new Date()
+                        },
+                      ]} />
+                    )} />
+                  {/* <Route path="/post/:id" component={FullPost} /> */}
+                  {/* <Route path="/not-found" component={NotFound} /> */}
+                </Switch>
+              </div>
+            </Router>
 
           </div>
         </div>

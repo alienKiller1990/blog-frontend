@@ -1,16 +1,17 @@
 import React from 'react';
-import './PostItem.scss'
+import { Link } from 'react-router-dom';
+import './PostItem.scss';
 
-function PostItem({ title, createdAt, _id }) {
+function PostItem({ title, createdAt, _id, onRemove }) {
     return (
         <div className="post-item">
-            <a href={`/posts/${_id}`}>
+            <Link to={`/posts/${_id}`}>
                 <h2>{title}</h2>
-            </a>
+            </Link>
             <p>
                 <i>Posted on {createdAt}</i>
-                <a href="#">Remove</a>
-                <a href="#">Edit</a>
+                <a href="javascript://" onClick={onRemove}>Remove</a>
+                <Link to={`/posts/${_id}/edit`}>Edit</Link>
             </p>
         </div>
     )
