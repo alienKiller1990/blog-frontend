@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { AddForm, HeaderBlock, PostList } from "./components";
+import { AddForm, FullPost, HeaderBlock, PostList, NotFound } from "./components";
 
 function App() {
   return (
@@ -42,8 +42,20 @@ function App() {
                         },
                       ]} />
                     )} />
-                  {/* <Route path="/post/:id" component={FullPost} /> */}
-                  {/* <Route path="/not-found" component={NotFound} /> */}
+
+                  <Route
+                    path="/posts/:id"
+                    exact
+                    component={() => (
+                      <FullPost title="Заголовок статьи" createdAt={'' + new Date()} />
+                    )} />
+
+                  <Route
+                    path="/posts/:id/edit"
+                    exact
+                    component={AddForm}/>
+
+                  <Route path="*" component={NotFound} />
                 </Switch>
               </div>
             </Router>
