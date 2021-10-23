@@ -2,7 +2,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { AddForm, FullPost, HeaderBlock, PostList, NotFound } from "./components";
+import { AddForm, FullPost, HeaderBlock, NotFound } from "./components";
+import { PostList } from "./modules"
 
 function App() {
   return (
@@ -24,23 +25,7 @@ function App() {
                     path="/"
                     exact
                     component={() => (
-                      <PostList posts={[
-                        {
-                          _id: '1',
-                          title: 'Первая статья',
-                          createdAt: '' + new Date()
-                        },
-                        {
-                          _id: '2',
-                          title: 'Вторая статья',
-                          createdAt: '' + new Date()
-                        },
-                        {
-                          _id: '3',
-                          title: 'Третья статья',
-                          createdAt: '' + new Date()
-                        },
-                      ]} />
+                      <PostList />
                     )} />
 
                   <Route
@@ -53,7 +38,7 @@ function App() {
                   <Route
                     path="/posts/:id/edit"
                     exact
-                    component={AddForm}/>
+                    component={AddForm} />
 
                   <Route path="*" component={NotFound} />
                 </Switch>

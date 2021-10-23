@@ -1,13 +1,11 @@
 import React from 'react';
 import { PostItem } from '..';
 
-function PostList({ posts }) {
+function PostList({ items }) {
     return (
         <div className="post-items">
             {
-                posts.map(post => (
-                    <PostItem {...post}/>
-                ))
+                items ? items.map(post => <PostItem {...post}/>) : 'Loading...'
             }
 
         </div>

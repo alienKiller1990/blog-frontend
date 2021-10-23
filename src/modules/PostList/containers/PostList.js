@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { PostList } from "../../../components";
+import PostListActions from "../actions"
 
-function PostList() {
-    return (
-        <div>
-            
-        </div>
-    )
+class PostListContainer extends Component {
+
+    componentWillMount() {
+        const { fetchItems } = this.props;
+        fetchItems()
+    }
+
+    render() {
+        return <PostList items={this.props.items} />
+    }
 }
 
-export default PostList
+export default connect(({ posts }) => posts, PostListActions)(PostListContainer)
