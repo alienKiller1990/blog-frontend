@@ -1,5 +1,5 @@
 import { axios } from "../../core";
 
 export default {
-    get: () => axios.get('/posts')
+    get: (id) => axios.get(`/posts${ id ? '/' + id : '' }`)
 }

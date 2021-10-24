@@ -10,6 +10,11 @@ export default (state = initialState, action) => {
                 ...state,
                 items: payload,
             }
+        case 'POSTS_APPEND_ITEM':
+            return {
+                ...state,
+                items: state.items ? [...state.items, payload] : [payload]
+            }
 
         default:
             return state;
