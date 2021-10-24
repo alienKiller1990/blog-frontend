@@ -1,37 +1,23 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { FullPost } from '../../../components';
-import PostListActions from '../../PostList/actions';
+import { HeaderBlock } from '../../../components';
 
 
 
-class FullPostContainer extends Component {
+const mapStateToProps = ({ posts }, { location: { pathname } }) => {
+    const postId = pathname.split('/posts/')[1]
+    return !posts.items ? {} : posts.items.filter(post => post._id === postId)[0]
+};
 
-    componentDidMount() {
-        const { post, postId, fetchItem } = this.props;
-        if (!post) {
-            fetchItem(postId)
-        }
 
-    }
-
-    render() {
-        const { post } = this.props
-        return !post ? 'Loading' : <FullPost text={post && post.text} createdAt={post && post.createdAt} />
-
-    }
+HeaderBlock.defaultProps = {
+    title: 'Заголовок сайта',
+    description: 'Описание',
+    imageUrl: "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg"
 }
-
-const mapStateToProps = ({ posts }, { match }) => ({
-    post: posts.items && posts.items.filter(post => post._id === match.params.id)[0],
-    postId: match.params.id,
-});
-
 
 export default withRouter(
     connect(
         mapStateToProps,
-        PostListActions,
-    )(FullPostContainer)
+    )(HeaderBlock)
 )

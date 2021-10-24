@@ -10,7 +10,7 @@ function PostItem({ title, createdAt, _id, onRemove }) {
             </Link>
             <p>
                 <i>Posted on {createdAt}</i>
-                <a href="javascript://" onClick={onRemove}>Remove</a>
+                <a href="javascript://" onClick={onRemove.bind(this, _id)}>Remove</a>
                 <Link to={`/posts/${_id}/edit`}>Edit</Link>
             </p>
         </div>
